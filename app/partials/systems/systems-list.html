@@ -1,0 +1,35 @@
+<navbar selected-link="'systems'"></navbar>
+<div class="row" ng-if="deleteWarned">
+  <div class="col-md-12">
+    <div class="alert alert-danger" role="alert">Warning: deleting a system is permanent, click again to
+      continue.
+    </div>
+  </div>
+</div>
+<div class="page-header">
+  <h1>Type Systems</h1>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-hover">
+      <tbody>
+      <tr ng-repeat="system in systems" class="system-row ng-click-link" ng-click="selectSystem(system.index)">
+        <td class="system-info">
+          <h4>{{system.system}}</h4>
+
+          <p>Description: {{system.description}}</p>
+
+          <p>Added On: {{system.created | date:'longDate'}}</p>
+        </td>
+        <td ng-if="isSecure">
+          <div class="accessory-container">
+            <button class="btn btn-danger" ng-click="deleteSystem($event, system.index)"><span
+              class="glyphicon glyphicon-minus"></span></button>
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <a ng-if="isSecure" href="#/system-builder" class="btn btn-lg btn-primary">Add System</a>
+  </div>
+</div>

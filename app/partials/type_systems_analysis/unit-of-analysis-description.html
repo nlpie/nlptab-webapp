@@ -1,0 +1,13 @@
+<h5>Type:&nbsp;
+  <type-name system-index="unitOfAnalysis.systemIndex"
+             name="unitOfAnalysis.typeName"></type-name>
+</h5>
+
+<h5>Value Mappings:</h5>
+<div ng-repeat="mapping in mappings">
+  <span><b>{{$index + 1}}:</b> {{mapping.featureName}}</span><br>
+  <span ng-if="mapping.nestedStructure">Nested on:</span>
+  <ul ng-if="mapping.nestedStructure">
+    <li ng-repeat="feature in mapping.nestedStructure">{{feature}}</li>
+  </ul>
+</div>

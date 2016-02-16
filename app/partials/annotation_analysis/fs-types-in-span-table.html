@@ -1,0 +1,34 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title annotations-title">
+            <span>FeatureStructure types in selected text</span>
+        </h3>
+    </div>
+    <table class="table table-hover">
+        <tr ng-show="fetching">
+            <td>
+                <div class="center-block" activity-indicator>
+                </div>
+            </td>
+        </tr>
+        <tr ng-repeat="typeInSystem in typeInSystems | startAt: from | limitTo: pagination.itemsPerPage">
+            <td class="title-subtitle-detail-cell"
+                ng-class="{true: 'info', false: ''}[selectedTypeInSystem && typeInSystem === selectedTypeInSystem]"
+                ng-click="selectTypeInSystem(typeInSystem, typeInSystems.indexOf(typeInSystem))">
+                <span class="title">
+                    <type-name name="typeInSystem.type" unlinked></type-name>
+                </span>
+                <span class="subtitle">
+                    <system-name system-index="typeInSystem.systemIndex"></system-name>
+                </span>
+                <span class="detail">{{typeInSystem.count | number : 0}}</span>
+            </td>
+        </tr>
+    </table>
+</div>
+<!-- panel -->
+<div class="text-center">
+    <uib-pagination ng-model="pagination.page" items-per-page="pagination.itemsPerPage"
+                total-items="pagination.totalItems" previous-text="&lsaquo;" next-text="&rsaquo;" max-size="5"
+                class="pagination-sm"></uib-pagination>
+</div>

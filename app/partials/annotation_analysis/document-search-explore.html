@@ -1,0 +1,37 @@
+<navbar selected-link="'document-search'"></navbar>
+<main id="document-search-explore">
+    <div id="document">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Document Text</h3>
+            </div>
+            <div class="panel-body" ng-mousedown="clearSelectedText()" ng-mouseup="checkSelectedText()">
+                <highlighted-text range="highlightedRange" text="sofaText"></highlighted-text>
+            </div>
+            <div class="panel-footer">
+                <div class="span-editor">
+                        <span class="span-begin-editor">
+                            <span-editor value="textSpan.begin" min="0" max="textSpan.end">Begin</span-editor>
+                        </span>
+                        <span class="span-end-editor">
+                            <span-editor value="textSpan.end" min="textSpan.begin" max="sofaText.length">End
+                            </span-editor>
+                        </span>
+                </div>
+                <!-- span-editor -->
+            </div>
+            <!-- panel-footer -->
+        </div>
+        <!-- panel -->
+        <p><i>You can also select text with the mouse.</i></p>
+    </div>
+    <!-- document -->
+    <div id="annotations">
+        <fs-types-in-span-table></fs-types-in-span-table>
+    </div>
+    <!-- annotations -->
+    <div id="details" ng-if="selectedTypeInSystem">
+        <examples-in-span></examples-in-span>
+    </div>
+    <!-- details -->
+</main>

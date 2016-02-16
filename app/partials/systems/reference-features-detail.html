@@ -1,0 +1,16 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Reference Features</h3>
+    </div>
+    <div class="panel-body">
+        <dl ng-if="selectedType.referenceFeatures.length > 0">
+            <dt ng-repeat-start="reference in selectedType.referenceFeatures">{{reference.shortName}}</dt>
+            <dd ng-repeat-end>
+                Value Type:&nbsp;<type-name name="reference.valueType" system-index="systemIndex"></type-name>
+            </dd>
+        </dl>
+        <p ng-if="selectedType.referenceFeatures.length === 0">
+            The selected type has no reference features.
+        </p>
+    </div>
+</div>

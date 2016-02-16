@@ -1,0 +1,27 @@
+<navbar selected-link="'systems'"></navbar>
+<div class="page-header">
+  <h1>System Indexing Progress</h1>
+</div>
+<div class="col-md-6 col-md-offset-3" ng-if="!systemIndexingTask">
+  <h3>Preparing for System Indexing</h3>
+</div>
+<div class="col-md-6 col-md-offset-3" ng-if="systemIndexingTask">
+  <p class="text-center">Completed {{systemIndexingTask.entityCount}} of {{systemIndexingTask.total}}
+    documents.</p>
+  <uib-progressbar max="systemIndexingTask.total" value="systemIndexingTask.entityCount"></uib-progressbar>
+  <p class="text-center" ng-if="systemIndexingTask.failed">System Indexing task failed. Reason: </p>
+
+  <p ng-repeat="exception in systemIndexingTask.exceptions">
+    <span ng-repeat-start="line in exception">{{line}}</span>
+    <br ng-repeat-end>
+  </p>
+
+  <div class="text-center" ng-if="systemIndexingTask.finished && !systemIndexingTask.failed">
+    <p>
+      System indexing task completed without errors.
+    </p>
+    <p>
+      Click <a class="ng-click-link" ng-click="goToSystem()">here</a> to continue to system information.
+    </p>
+  </div>
+</div>

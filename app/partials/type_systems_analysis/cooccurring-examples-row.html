@@ -1,0 +1,11 @@
+<td>
+  {{$index + 1 + from}}
+</td>
+<td>
+  <fs-instance-info ng-if="firstFs" feature-structure="firstFs"></fs-instance-info>
+  <h4 ng-if="!firstFs">No matching feature structure located nearby.</h4>
+</td>
+<td>
+  <fs-instance-info ng-if="secondFs" feature-structure="secondFs"></fs-instance-info>
+  <h4 ng-if="!secondFs">No matching feature structure located nearby.</h4>
+</td>

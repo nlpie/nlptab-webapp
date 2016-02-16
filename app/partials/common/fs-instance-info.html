@@ -1,0 +1,108 @@
+<div ng-if="featureStructure">
+    <div>
+        <h5>Associated Text</h5>
+        <annotation-from-sofa feature-structure="featureStructure"></annotation-from-sofa>
+    </div>
+    <div>
+        <h5>Basic Info</h5>
+        <dl class="dl-horizontal">
+            <dt>ElasticSearch Id</dt>
+            <dd>{{featureStructure._id}}</dd>
+            <dt>Type</dt>
+            <dd><type-name name="featureStructure.primaryType" system-index="featureStructure._index"></type-name></dd>
+        </dl>
+    </div>
+    <div ng-if="featureStructure.stringFeatures">
+        <h5>String Features</h5>
+        <table class="table">
+            <thead>
+            <tr>
+                <th class="col-md-4">Feature Name</th>
+                <th class="col-md-8">Feature Value</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="(featureName, featureValue) in featureStructure.stringFeatures">
+                <td>
+                    <feature-name name="featureName" system-index="featureStructure._index"></feature-name>
+                </td>
+                <td><potential-cui value="featureValue"></potential-cui></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div ng-if="featureStructure.intFeatures">
+        <h5>Integer Features</h5>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th class="col-md-4">Feature Name</th>
+                    <th class="col-md-8">Feature Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="(featureName, featureValue) in featureStructure.intFeatures">
+                    <td>
+                        <feature-name name="featureName" system-index="featureStructure._index"></feature-name>
+                    </td>
+                    <td>{{featureValue}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div ng-if="featureStructure.booleanFeatures">
+        <h5>Boolean Features</h5>
+        <table class="table">
+            <thead>
+            <tr>
+                <th class="col-md-4">Feature Name</th>
+                <th class="col-md-8">Feature Value</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="(featureName, featureValue) in featureStructure.booleanFeatures">
+                <td>
+                    <feature-name name="featureName" system-index="featureStructure._index"></feature-name>
+                </td>
+                <td>{{featureValue && {true: 'true', false: 'false'}[featureValue]}} </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div ng-if="featureStructure.references && !isEmpty(featureStructure.references)">
+        <h5>References</h5>
+        <table class="table">
+            <thead>
+            <tr>
+                <th class="col-md-4">Feature Name</th>
+                <th class="col-md-8">Feature Structure Reference Id</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="(featureName, referenceId) in featureStructure.references">
+                <td>
+                    <feature-name name="featureName" system-index="featureStructure._index"></feature-name>
+                </td>
+                <td>
+                    <fs-instance-id system-index="featureStructure._index" fs-id="referenceId"></fs-instance-id>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div ng-if="featureStructure.arrayItems && featureStructure.arrayItems.length > 0">
+        <h5>Array Items</h5>
+        <ul class="list-unstyled">
+            <li ng-repeat="arrayItem in featureStructure.arrayItems">
+                <fs-instance-id system-index="featureStructure._index" fs-id="arrayItem"></fs-instance-id>
+            </li>
+        </ul>
+    </div>
+
+</div>
+<div ng-if="!featureStructure">
+    <h4>Feature Structure was not found. This is potentially because the type was set to be ignored.</h4>
+</div>
+

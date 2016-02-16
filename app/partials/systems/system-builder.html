@@ -1,0 +1,34 @@
+<navbar selected-link="'systems'"></navbar>
+<div class="page-header">
+  <h1>Add new system</h1>
+</div>
+<div class="row">
+  <div class="col-md-4">
+    <form ng-disabled="!uploading">
+      <div class="form-group">
+        <label for="systemName">System Name</label>
+        <input type="text" class="form-control" id="systemName" ng-model="systemName" placeholder="Systemname">
+      </div>
+      <div class="form-group">
+        <label for="systemDescription">System Description</label>
+        <input type="text" class="form-control" id="systemDescription" ng-model="systemDescription"
+               placeholder="System Description">
+      </div>
+      <div class="form-group">
+        <label for="files">Zip File</label>
+        <input id="files" type="file" ngf-select ng-model="file" name="file" accept="application/zip" required>
+
+        <p class="help-block">Zipped input file, should contain a file named TypeSystem.xml with the UIMA type system
+          and any number of UIMA XMI documents.</p>
+      </div>
+      <div class="form-group">
+        <label for="useXCas">Use XCas?</label>
+        <input type="checkbox" class="form-control" id="useXCas" ng-model="useXCas">
+
+        <p class="help-block">Whether or not the input contains XCas serialized files, the default is to use XMI
+          serialized files</p>
+      </div>
+      <div class="btn btn-default" ng-click="submit()">Submit</div>
+    </form>
+  </div>
+</div>

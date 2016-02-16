@@ -1,0 +1,147 @@
+<navbar selected-link="'analysis'"></navbar>
+<div class="container">
+
+  <div class="page-header">
+    <h1>Run New Analysis</h1>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-md-6">
+          <h3 class="text-left">Hypothesis Unit of Analysis</h3>
+          <unit-of-analysis unit-of-analysis="firstUnitOfAnalysis" systems="systems"
+                            add-feature-value-mapping="addHypothesisFeatureValueMapping"></unit-of-analysis>
+        </div>
+        <div class="col-md-6">
+          <h3 class="text-left">Reference Unit of Analysis</h3>
+          <unit-of-analysis unit-of-analysis="secondUnitOfAnalysis" systems="systems"
+                            add-feature-value-mapping="addReferenceFeatureValueMapping"></unit-of-analysis>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h3 ng-if="featureValueMappings.length > 0">Feature Value Mappings</h3>
+
+  <div class="panel panel-default" ng-repeat="featureValueMapping in featureValueMappings">
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-md-5">
+          <b ng-if="featureValueMapping.hypothesisFeature">Feature:</b>
+          <feature-on feature-name="featureValueMapping.hypothesisFeature.feature.name"></feature-on>
+          <br>
+
+          <div ng-if="featureValueMapping.hypothesisFeature.nestedStructure.length > 0">
+            <b>On Nested Structure:</b>
+            <ul>
+              <li ng-repeat="nestedItem in featureValueMapping.hypothesisFeature.nestedStructure">
+                <feature-on feature-name="nestedItem"></feature-on>
+              </li>
+            </ul>
+          </div>
+          <b ng-if="featureValueMapping.hypothesisFeature">Is Collection:</b>
+          {{{'true': 'Yes', 'false': 'No'}[featureValueMapping.hypothesisIsCollection]}}<br>
+          <a href="javascript:" ng-if="featureValueMapping.hypothesisFeature"
+             ng-click="removeHypothesisFeature($index)">Delete</a>
+        </div>
+        <div class="col-md-2">
+          <form class="form-inline text-center">
+            <form class="form-group">
+              <label for="equivalenceOptions" class="sr-only">Equivalence</label>
+              <select id="equivalenceOptions" ng-if="featureValueMapping.equivalenceOptions.length > 0"
+                      class="form-control"
+                      ng-model="featureValueMapping.equivalence">
+                <option ng-repeat="eq in featureValueMapping.equivalenceOptions">{{eq}}</option>
+              </select>
+            </form>
+          </form>
+        </div>
+        <div class="col-md-5">
+          <b ng-if="featureValueMapping.referenceFeature">Feature:</b>
+          <feature-on feature-name="featureValueMapping.referenceFeature.feature.name"></feature-on>
+          <br>
+
+          <div ng-if="featureValueMapping.referenceFeature.nestedStructure.length > 0">
+            <b>On Nested Structure:</b>
+            <ul>
+              <li ng-repeat="nestedItem in featureValueMapping.referenceFeature.nestedStructure">
+                <feature-on feature-name="nestedItem"></feature-on>
+              </li>
+            </ul>
+          </div>
+          <b ng-if="featureValueMapping.referenceFeature">Is Collection:</b>
+          {{{'true': 'Yes', 'false': 'No'}[featureValueMapping.referenceIsCollection]}}<br>
+          <a href="javascript:" ng-if="featureValueMapping.referenceFeature"
+             ng-click="removeReferenceFeature($index)">Delete</a>
+        </div>
+      </div>
+      <div class="row" ng-if="featureValueMapping.hypothesisFeature && featureValueMapping.referenceFeature">
+        <div class="col-md-12">
+          <h5>Value Transformations</h5>
+
+          <p>Values without value transformations will remain the same.</p>
+        </div>
+      </div>
+      <div class="row" ng-repeat="valueMapping in featureValueMapping.valueMappings">
+        <div class="col-md-1">
+          From:
+        </div>
+        <div class="col-md-3">
+          <feature-value-suggestion system-index="firstUnitOfAnalysis.selectedSystem.index"
+                                    type="firstUnitOfAnalysis.selectedType"
+                                    feature="featureValueMapping.hypothesisFeature.feature"
+                                    value="valueMapping.from"
+                                    on-select="valueMapping.fromSelected()"></feature-value-suggestion>
+        </div>
+        <div class="col-md-1 col-md-offset-2">
+          To:
+        </div>
+        <div class="col-md-3">
+          <feature-value-suggestion system-index="secondUnitOfAnalysis.selectedSystem.index"
+                                    type="secondUnitOfAnalysis.selectedType"
+                                    feature="featureValueMapping.referenceFeature.feature"
+                                    value="valueMapping.to"
+                                    on-select="valueMapping.toSelected()"></feature-value-suggestion>
+        </div>
+        <div class="col-md-1">
+          <p class="text-right">
+            <a href="javascript:" ng-click="featureValueMapping.removeValueMapping($index)">Delete</a>
+          </p>
+        </div>
+      </div>
+      <div class="row" ng-if="featureValueMapping.hypothesisFeature && featureValueMapping.referenceFeature">
+        <div class="col-md-12">
+          <p class="text-center">
+            <a href="javascript:" ng-click="featureValueMapping.addValueMapping()">Add Value Transformation</a>
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      <form>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" ng-model="onlyCompareMatches" ng-disabled="!featureValueMappings.length"><b>Hit/Miss
+            only.</b> Ignores annotations that do not have counterparts in the other system and only compares whether
+            feature values are equivalent.
+          </label>
+        </div>
+        <p class="help-block" ng-if="!featureValueMappings.length">Disabled because there are no features selected.</p>
+
+        <div class="form-group">
+          <label for="description">Description</label>
+          <input type="text" id="description" ng-model="description" class="form-control" title="Description">
+        </div>
+        <button type="button"
+                ng-disabled="!isReadyForAnalysis()"
+                class="btn btn-primary btn-lg" ng-click="submitAnalysis()">Run Analysis
+        </button>
+        <p class="help-block" ng-if="!isReadyForAnalysis()">Disabled until both systems have types and all
+          selected features are matched.</p>
+      </form>
+    </div>
+  </div>
+</div>

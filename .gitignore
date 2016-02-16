@@ -1,0 +1,5 @@
+/node_modules
+/.tmp
+/app/third_party
+/app/js
+/.idea

@@ -1,0 +1,46 @@
+<navbar selected-link="'document-search'"></navbar>
+<div id="document-search-results">
+    <table class="table">
+        <thead>
+        <tr>
+            <th colspan="2">
+                <h2>Documents</h2>
+            </th>
+        </tr>
+        <tr>
+            <th>
+                <h4>Filter</h4>
+                <input type="text" placeholder="Filter Text with Phrase"
+                       class="form-control" id="queryString" ng-model="queryString">
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-show="fetching">
+            <td>
+                <div class="center-block" activity-indicator></div>
+            </td>
+        </tr>
+        <tr ng-repeat="sofa in sofas">
+            <td>
+                <highlighted-text text="sofa.text" range="ranges[$index]"></highlighted-text>
+            </td>
+            <td class="explore-cell">
+                <a type="button" class="btn btn-xs btn-primary"
+                   ng-href="#/document-search/explore/{{sofa.identifier}}?begin={{ranges[$index].outer.begin}}&end={{ranges[$index].outer.end}}">Explore
+                    <span class="glyphicon glyphicon-arrow-right"></span></a>
+            </td>
+        </tr>
+        <tr ng-if="sofas.length === 0">
+            <td colspan="2" class="text-vert-middle text-center">
+                <h3>No Results Found</h3>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div class="text-center">
+        <uib-pagination ng-model="pagination.page" items-per-page="pagination.itemsPerPage"
+                    total-items="pagination.totalItems" max-size="15" boundary-links="true"></uib-pagination>
+    </div>
+</div>

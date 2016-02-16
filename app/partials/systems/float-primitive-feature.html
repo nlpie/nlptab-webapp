@@ -1,0 +1,24 @@
+<div>
+    <h4>Percentiles:</h4>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Percentile</th>
+            <th>Value</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="percentileObject in float.percentiles | orderBy:'percentile'">
+            <td>{{percentileObject.percentile | number: 1}}%</td>
+            <td>{{percentileObject.count | number: 2}}</td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="2">
+                <p>{{float.missing.doc_count}} instances are missing values. {{100.0 * float.missing.doc_count / float.count | number: 2}}% of total</p>
+            </td>
+        </tr>
+        </tfoot>
+    </table>
+</div>

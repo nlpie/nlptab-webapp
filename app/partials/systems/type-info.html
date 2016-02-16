@@ -1,0 +1,24 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">{{selectedType.typeShortName}}</h3>
+    </div>
+    <div class="panel-body">
+        <h5>Full Name</h5>
+        <p>{{selectedType.typeName}}</p>
+        <h5>Instances</h5>
+        <p>{{countOfType}}</p>
+        <p>{{100.0 * countOfType / totalFeatureStructures | number : 2}}% of {{totalFeatureStructures}} total.</p>
+        <h5>Parent Types Inherited From:</h5>
+        <ul class="list-unstyled">
+            <li ng-repeat="parentType in selectedType.parentTypes">
+                <type-name name="parentType" system-index="systemIndex"></type-name>
+            </li>
+        </ul>
+        <h5>Child Types:</h5>
+        <ul class="list-unstyled">
+            <li ng-repeat="child in children">
+                <type-name name="child" system-index="systemIndex"></type-name>
+            </li>
+        </ul>
+    </div>
+</div>

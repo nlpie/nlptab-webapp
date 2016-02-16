@@ -1,0 +1,25 @@
+<div>
+    <h4>Common Values:</h4>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Value</th>
+            <th>Count</th>
+            <th>Percentage</th>
+        </tr>
+        </thead>
+        <tr ng-repeat="value in string.values">
+            <td>{{value.key}}</td>
+            <td>{{value.doc_count}}</td>
+            <td>{{(100.0 * value.doc_count / string.count) | number: 2}}</td>
+        </tr>
+        <tfoot>
+        <tr>
+            <td colspan="3">
+                <p>Approximately {{string.otherUniqueValues.value - string.values.length}} other unique values not shown here.</p>
+                <p>{{string.missing.doc_count}} instances are missing values. {{100.0 * string.missing.doc_count / string.count | number: 2}}% of total</p>
+            </td>
+        </tr>
+        </tfoot>
+    </table>
+</div>

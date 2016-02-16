@@ -1,0 +1,40 @@
+<uib-tabset justified="true" ng-if="config.selectedType">
+  <uib-tab heading="Info">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <span>Total Instances: {{examplesPagination.totalItems}}</span>
+      </div>
+    </div>
+  </uib-tab>
+  <uib-tab heading="Examples">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <fs-instance-info feature-structure="example"></fs-instance-info>
+      </div>
+      <pagination items-per-page="examplesPagination.itemsPerPage" total-items="examplesPagination.totalItems"
+                  ng-model="examplesPagination.page" max-size="6" boundary-links="false"></pagination>
+    </div>
+  </uib-tab>
+  <uib-tab heading="Feature Values" ng-if="config.selectedFeature">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <div ng-if="config.selectedFeature.valueType === 'uima.cas.Boolean'">
+          <boolean-primitive-feature feature="config.selectedFeature" system-index="config.selectedSystem.index"
+                                     selected-type="config.selectedType"></boolean-primitive-feature>
+        </div>
+        <div ng-if="config.selectedFeature.valueType === 'uima.cas.String'">
+          <string-primitive-feature feature="config.selectedFeature" system-index="config.selectedSystem.index"
+                                    selected-type="config.selectedType"></string-primitive-feature>
+        </div>
+        <div ng-if="config.selectedFeature.valueType === 'uima.cas.Integer'">
+          <int-primitive-feature feature="config.selectedFeature" system-index="config.selectedSystem.index"
+                                 selected-type="config.selectedType"></int-primitive-feature>
+        </div>
+        <div ng-if="config.selectedFeature.valueType === 'uima.cas.Float'">
+          <float-primitive-feature feature="config.selectedFeature" system-index="config.selectedSystem.index"
+                                   selected-type="config.selectedType"></float-primitive-feature>
+        </div>
+      </div>
+    </div>
+  </uib-tab>
+</uib-tabset>

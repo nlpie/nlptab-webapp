@@ -1,0 +1,76 @@
+<navbar selected-link="'systems'"></navbar>
+<div class="row" ng-if="deleteWarned">
+  <div class="col-md-12">
+    <div class="alert alert-danger" role="alert">Warning: deleting a system is permanent, click "Delete System" again to
+      continue.
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <h2>{{system.system}}
+      &nbsp;
+      <small><a class="ng-click-link" ng-click="deleteSystem()">Delete System</a></small>
+    </h2>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-3">
+    <system-types-list></system-types-list>
+  </div>
+  <div class="col-md-9" ng-if="selectedTypeName">
+    <uib-tabset justified="true" ng-if="selectedType">
+      <uib-tab heading="Info" active="infoActive" select="selectedInfo()">
+        <type-info ng-if="infoActive"></type-info>
+      </uib-tab>
+      <uib-tab heading="Primitive Features" active="primitivesActive" select="selectedPrimitives()">
+        <uib-accordion close-others="false" ng-if="selectedType.primitiveFeatures.length > 0">
+          <uib-accordion-group ng-repeat="primitiveFeature in selectedType.primitiveFeatures"
+                           is-open="primitiveFeature.isOpen">
+            <uib-accordion-heading>
+              {{primitiveFeature.shortName}} ({{primitiveFeature.valueType}})
+            </uib-accordion-heading>
+            <div ng-if="primitiveFeature.isOpen && primitiveFeature.valueType === 'uima.cas.Boolean'">
+              <boolean-primitive-feature feature="primitiveFeature" system-index="systemIndex"
+                                         selected-type="selectedType"></boolean-primitive-feature>
+            </div>
+            <div ng-if="primitiveFeature.isOpen && primitiveFeature.valueType === 'uima.cas.String'">
+              <string-primitive-feature feature="primitiveFeature" system-index="systemIndex"
+                                        selected-type="selectedType"></string-primitive-feature>
+            </div>
+            <div ng-if="primitiveFeature.isOpen && primitiveFeature.valueType === 'uima.cas.Integer'">
+              <int-primitive-feature feature="primitiveFeature" system-index="systemIndex"
+                                     selected-type="selectedType"></int-primitive-feature>
+            </div>
+            <div ng-if="primitiveFeature.isOpen && primitiveFeature.valueType === 'uima.cas.Float'">
+              <float-primitive-feature feature="primitiveFeature" system-index="systemIndex"
+                                       selected-type="selectedType"></float-primitive-feature>
+            </div>
+          </uib-accordion-group>
+        </uib-accordion>
+        <div class="panel panel-default" ng-show="selectedType.primitiveFeatures.length === 0">
+          <div class="panel-body">
+            <p>The selected type has no primitive features.</p>
+          </div>
+        </div>
+      </uib-tab>
+      <uib-tab heading="Reference Features" active="referencesActive" select="selectedReferences()">
+        <reference-features-detail ng-if="referencesActive"></reference-features-detail>
+      </uib-tab>
+      <uib-tab heading="Instances" active="instancesActive" select="selectedInstances()">
+        <instances-detail ng-if="instancesActive"></instances-detail>
+      </uib-tab>
+    </uib-tabset>
+    <div class="panel panel-default" ng-if="!selectedType">
+      <div class="panel-heading">
+        <h3 class="panel-title">
+          <type-name name="selectedTypeName" unlinked></type-name>
+        </h3>
+      </div>
+      <div class="panel-body">
+        This type has no instances included in the results from {{system.system}}. It is either not used or is
+        not saved in the CAS output.
+      </div>
+    </div>
+  </div>
+</div>

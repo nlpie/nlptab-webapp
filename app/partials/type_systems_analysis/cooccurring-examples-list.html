@@ -1,0 +1,27 @@
+<table class="table table-bordered">
+  <thead>
+  <tr>
+    <th>#</th>
+    <th>
+      <span>Hypothesis:&nbsp;</span><system-name system-index="matchCounts.hypothesisUnitOfAnalysis.systemIndex" unlinked></system-name>
+      &nbsp;
+      <type-name name="matchCounts.hypothesisUnitOfAnalysis.typeName" unlinked></type-name>
+    </th>
+    <th>
+      <span>Reference:&nbsp;</span><system-name system-index="matchCounts.referenceUnitOfAnalysis.systemIndex" unlinked></system-name>
+      &nbsp;
+      <type-name name="matchCounts.referenceUnitOfAnalysis.typeName" unlinked>
+    </th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr ng-repeat="coOccurrenceMatch in coOccurrenceMatches" cooccurring-examples-row>
+  </tr>
+  </tbody>
+</table>
+
+<div class="text-center">
+  <uib-pagination ng-model="pagination.page" items-per-page="pagination.itemsPerPage" total-items="pagination.totalItems"
+              max-size="20">
+  </uib-pagination>
+</div>

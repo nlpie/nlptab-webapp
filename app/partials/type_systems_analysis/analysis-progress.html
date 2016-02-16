@@ -1,0 +1,13 @@
+<navbar selected-link="'analysis'"></navbar>
+<div class="page-header">
+  <h1>Analysis Progress</h1>
+</div>
+<div class="col-md-6 col-md-offset-3" ng-if="!analysisTask">
+  <h3>Preparing for Analysis</h3>
+</div>
+<div class="col-md-6 col-md-offset-3" ng-if="analysisTask">
+  <p class="text-center" ng-if="analysisTask">Completed {{analysisTask.completed}} of {{analysisTask.total}}
+    documents.</p>
+  <uib-progressbar max="analysisTask.total" value="analysisTask.completed"></uib-progressbar>
+  <p class="text-center" ng-if="analysisTask.failed">Analysis task failed. Reason: {{analysisTask.error}}</p>
+</div>

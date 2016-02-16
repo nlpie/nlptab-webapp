@@ -1,0 +1,18 @@
+<div>
+    <h4>Values:</h4>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Value</th>
+            <th>Count</th>
+            <th>Percentage</th>
+        </tr>
+        </thead>
+        <tr ng-repeat="boolValue in bool.values">
+            <td>{{boolValue.key}}</td>
+            <td>{{boolValue.doc_count}}</td>
+            <td>{{(100.0 * boolValue.doc_count / bool.count) | number: 2}}</td>
+        </tr>
+    </table>
+    <p>{{bool.missing.doc_count}} instances are missing values for this feature. {{100.0 * bool.missing.doc_count / bool.count | number: 2}}% of total</p>
+</div>

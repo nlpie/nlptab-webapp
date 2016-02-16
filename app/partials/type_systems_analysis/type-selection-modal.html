@@ -1,0 +1,20 @@
+<div class="modal-header">
+  <h3 class="modal-title">Select Type</h3>
+</div>
+<div class="modal-body">
+  <table class="table table-striped">
+    <tr ng-repeat="type in types">
+      <td>
+        <type-name name="type.typeName" unlinked></type-name>
+      </td>
+      <td class="text-right">
+        <button class="btn btn-default btn-xs" ng-click="selectType($index)">Select</button>
+      </td>
+    </tr>
+  </table>
+</div>
+<div class="row">
+  <div class="col-md-12 text-center">
+    <uib-pagination items-per-page="pagination.itemsPerPage" ng-model="pagination.page" total-items="pagination.totalItems"></uib-pagination>
+  </div>
+</div>

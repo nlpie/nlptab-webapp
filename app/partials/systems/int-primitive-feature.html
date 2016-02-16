@@ -1,0 +1,38 @@
+<div>
+    <h4>Percentiles:</h4>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Percentile</th>
+            <th>Value</th>
+        </tr>
+        </thead>
+        <tr ng-repeat="percentileObject in int.percentiles | orderBy:'percentile'">
+            <td>{{percentileObject.percentile | number: 1}}%</td>
+            <td>{{percentileObject.count | number: 0}}</td>
+        </tr>
+    </table>
+    <h4>Common Values:</h4>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Value</th>
+            <th>Occurrences</th>
+            <th>Percentage</th>
+        </tr>
+        </thead>
+        <tr ng-repeat="intValue in int.values">
+            <td>{{intValue.key}}</td>
+            <td>{{intValue.doc_count}}</td>
+            <td>{{(100.0 * intValue.doc_count / int.count) | number: 2}}</td>
+        </tr>
+        <tfoot>
+        <tr>
+            <td colspan="3">
+                <p>Approximately {{int.otherUniqueValues.value - int.values.length}} other unique values not shown here.</p>
+                <p>{{int.missing.doc_count}} instances are missing values. {{100.0 * int.missing.doc_count / int.count | number: 2}}% of total</p>
+            </td>
+        </tr>
+        </tfoot>
+    </table>
+</div>

@@ -1,0 +1,4 @@
+<ui-select ng-model="selected.value">
+  <ui-select-match placeholder="Value">{{$select.selected}}</ui-select-match>
+  <ui-select-choices repeat="value in values | filter: $select.search">{{value}}</ui-select-choices>
+</ui-select>

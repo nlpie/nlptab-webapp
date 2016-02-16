@@ -1,0 +1,78 @@
+<table ng-if="!matchCounts.hitMissOnly" class="confusionMatrix table table-condensed table-bordered">
+  <thead>
+  <tr>
+    <th colspan="2" rowspan="2"></th>
+    <th class="secondTypeName typeName" colspan="2">
+      <h5>Hypothesis</h5>
+      <h4 class="text-primary">
+        <system-name system-index="matchCounts.hypothesisUnitOfAnalysis.systemIndex"></system-name>
+      </h4>
+      <p>
+        <type-name system-index="matchCounts.hypothesisUnitOfAnalysis.systemIndex"
+                   name="matchCounts.hypothesisUnitOfAnalysis.typeName"></type-name>
+      </p>
+    </th>
+  </tr>
+  <tr>
+    <th class="occursDoesnt">Occurs</th>
+    <th class="occursDoesnt">Does not</th>
+  </tr>
+  </thead>
+  <tr>
+    <th class="firstTypeName typeName" rowspan="2">
+      <h5>Reference</h5>
+      <h4 class="text-primary">
+        <system-name system-index="matchCounts.referenceUnitOfAnalysis.systemIndex"></system-name>
+      </h4>
+      <p>
+        <type-name system-index="matchCounts.referenceUnitOfAnalysis.systemIndex"
+                   name="matchCounts.referenceUnitOfAnalysis.typeName"></type-name>
+      </p>
+    </th>
+    <th class="occursDoesnt">Occurs</th>
+    <td class="countCell" ng-click="selectExamplesOf('coOccurrences')"
+        ng-class="{true: 'active', false: ''}[examplesOf === 'coOccurrences']">
+      <button type="button" class="btn btn-md btn-primary">
+        {{matchCounts.both}}
+      </button>
+    </td>
+    <td class="countCell" ng-click="selectExamplesOf('secondOnly')"
+        ng-class="{true: 'active', false: ''}[examplesOf === 'secondOnly']">
+      <button type="button" class="btn btn-md btn-primary">
+        {{matchCounts.secondOnly}}
+      </button>
+    </td>
+  </tr>
+  <tr>
+    <th class="occursDoesnt">Does not</th>
+    <td class="countCell" ng-click="selectExamplesOf('firstOnly')"
+        ng-class="{true: 'active', false: ''}[examplesOf === 'firstOnly']">
+      <button type="button" class="btn btn-md btn-primary">
+        {{matchCounts.firstOnly}}
+      </button>
+    </td>
+    <td class="countCell">-</td>
+  </tr>
+</table>
+<table ng-if="matchCounts.hitMissOnly" class="confusionMatrix table table-condensed table-bordered">
+  <thead>
+  <tr>
+    <th class="occursDoesnt">Hit</th>
+    <th class="occursDoesnt">Miss</th>
+  </tr>
+  </thead>
+  <tr>
+    <td class="countCell" ng-click="selectExamplesOf('coOccurrences')"
+        ng-class="{true: 'active', false: ''}[examplesOf === 'coOccurrences']">
+      <button type="button" class="btn btn-md btn-primary">
+        {{matchCounts.hits}}
+      </button>
+    </td>
+    <td class="countCell" ng-click="selectExamplesOf('firstOnly')"
+        ng-class="{true: 'active', false: ''}[examplesOf === 'firstOnly']">
+      <button type="button" class="btn btn-md btn-primary">
+        {{matchCounts.misses}}
+      </button>
+    </td>
+  </tr>
+</table>

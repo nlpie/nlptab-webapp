@@ -1,0 +1,18 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            <type-name name="selectedTypeInSystem.type"
+                       system-index="selectedTypeInSystem.systemIndex"></type-name>&nbsp;
+            <small>Details</small>
+        </h3>
+    </div>
+    <div class="panel-body">
+        <fs-instance-info feature-structure="featureStructure"></fs-instance-info>
+    </div>
+    <!-- panel-body -->
+</div>
+<div class="text-center">
+    <uib-pagination ng-model="pagination.page" items-per-page="pagination.itemsPerPage"
+                total-items="pagination.totalItems" previous-text="&lsaquo;" next-text="&rsaquo;" max-size="7"
+                class="pagination-sm" boundary-links="true" first-text="&laquo;" last-text="&raquo;"></uib-pagination>
+</div>

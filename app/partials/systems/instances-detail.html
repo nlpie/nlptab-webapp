@@ -1,0 +1,40 @@
+<div ng-if="childTypes.length > 1">
+  <h4>Child Types&nbsp;
+    <small><a ng-click="invertTypeSelection()">Invert Selection</a></small>
+  </h4>
+  <div>
+    <button style="margin: 2px"
+            ng-repeat="childType in childTypes" class="btn btn-xs"
+            ng-class="{'true': 'btn-primary', 'false': 'btn-danger'}[childType.isSelected]"
+            ng-click="toggleType($index)">
+      <type-name name="childType.name" unlinked></type-name>
+    </button>
+  </div>
+</div>
+<div class="panel panel-default" ng-if="featureStructureInstance">
+  <div class="panel-heading">
+    <div class="row">
+      <div class="col-md-2 text-left">
+        <a ng-if="instancesPagination.hasLowerPages()" ng-click="instancesPagination.decrement()">Previous</a>
+      </div>
+      <div class="col-md-8 text-center">
+        <h3 class="panel-title">Instance {{instancesPagination.page}} of {{instancesPagination.totalItems}} - Type:&nbsp;
+          <type-name name="featureStructureInstance.primaryType" system-index="systemIndex"></type-name>
+        </h3>
+      </div>
+      <div class="col-md-2 text-right">
+        <a ng-if="instancesPagination.hasHigherPages()" ng-click="instancesPagination.increment()">Next</a>
+      </div>
+    </div>
+  </div>
+  <div class="panel-body">
+    <div ng-if="featureStructureInstance">
+      <fs-instance-info feature-structure="featureStructureInstance"></fs-instance-info>
+    </div>
+  </div>
+</div>
+<div class="text-center">
+  <uib-pagination ng-if="featureStructureInstance" items-per-page="instancesPagination.itemsPerPage"
+              total-items="instancesPagination.totalItems" ng-model="instancesPagination.page" max-size="15"
+              boundary-links="true"></uib-pagination>
+</div>
