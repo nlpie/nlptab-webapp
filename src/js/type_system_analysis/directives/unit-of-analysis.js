@@ -15,7 +15,7 @@ angular.module('nlptabApp')
         systems: '=',
         addFeatureValueMapping: '='
       },
-      controller: function ($scope, Type, $modal) {
+      controller: function ($scope, Type, $uibModal) {
         $scope.types = [];
 
         $scope.tree = [];
@@ -30,8 +30,8 @@ angular.module('nlptabApp')
         };
 
         $scope.openTypeSelection = function () {
-          $modal.open({
-            templateUrl: 'type_systems_analysis/views/partials/type-selection-modal.html',
+          $uibModal.open({
+            templateUrl: 'partials/type_systems_analysis/type-selection-modal.html',
             controller: 'TypeSelectionModalCtrl',
             size: 'lg',
             resolve: {
@@ -39,7 +39,7 @@ angular.module('nlptabApp')
                 return $scope.unitOfAnalysis.selectedSystem.index;
               },
               selectedType: function () {
-                return function(selectedType) {
+                return function (selectedType) {
                   $scope.unitOfAnalysis.selectedType = selectedType;
                 };
               }
@@ -129,7 +129,7 @@ angular.module('nlptabApp')
           $scope.tree.splice(index + 1, i);
         };
 
-        $scope.addFeature = function (index) {
+        var getNestedPath = function (index) {
           var item = $scope.tree[index];
           var nestedPath;
           var level = item.level;
@@ -147,7 +147,12 @@ angular.module('nlptabApp')
               ptr--;
             }
           }
-          $scope.addFeatureValueMapping(item.feature, nestedPath, collection);
+          return {item: item, nestedPath: nestedPath, collection: collection};
+        };
+
+        $scope.addFeature = function (index) {
+          var __ret = getNestedPath(index);
+          $scope.addFeatureValueMapping(__ret.item.feature, __ret.nestedPath, __ret.collection);
         };
 
         $scope.$watch('unitOfAnalysis.selectedType', function (value) {
@@ -158,8 +163,8 @@ angular.module('nlptabApp')
         });
 
         $scope.examples = function (index) {
-          $modal.open({
-            templateUrl: 'type_systems_analysis/views/partials/feature-examples-modal.html',
+          $uibModal.open({
+            templateUrl: 'partials/type_systems_analysis/feature-examples-modal.html',
             controller: 'FeatureExamplesModalCtrl',
             size: 'lg',
             resolve: {
@@ -174,6 +179,23 @@ angular.module('nlptabApp')
               }
             }
           });
+        };
+
+        $scope.addFilter = function (index) {
+          var __ret = getNestedPath(index);
+          var filter = {
+            feature: __ret.item.feature,
+            path: __ret.nestedPath,
+            collection: __ret.collection,
+            value: '',
+            filter: 'equals',
+            filterOptions: {
+              'equals',
+              'in'
+            }
+          };
+
+          $scope.unitOfAnalysis.filters.push(filter);
         };
       }
     };

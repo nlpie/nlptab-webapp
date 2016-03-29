@@ -4,8 +4,12 @@ angular.module('nlptabApp')
   .controller('AnalysisBuilderCtrl', function ($scope, $location, CasProcessingIndex, AnalysisTasks) {
     $scope.systems = [];
 
-    $scope.firstUnitOfAnalysis = {};
-    $scope.secondUnitOfAnalysis = {};
+    $scope.firstUnitOfAnalysis = {
+      filters: []
+    };
+    $scope.secondUnitOfAnalysis = {
+      filters: []
+    };
     $scope.featureValueMappings = [];
     $scope.onlyCompareMatches = false;
 

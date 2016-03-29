@@ -45,20 +45,45 @@
                                                                                system-index="unitOfAnalysis.selectedSystem.systemIndex"></type-name> </span>
           <a ng-if="item.primitive"
              ng-click="examples($index)">Examples</a><br>
-          <small>{{item.feature.valueType}}</small>
+          <small>
+            <type-name name="item.feature.valueType" unlinked>
+          </small>
         </div>
       </div>
     </td>
+    <td class="text-right">
+      <button ng-if="item.primitive" class="btn btn-success btn-xs" ng-click="addFeature($index)">
+        Select Feature
+      </button>
+      <button ng-if="item.primitive" class="btn btn-success btn-xs" ng-click="addFilter($index)">
+        Add Filter
+      </button>
+      <button ng-if="!item.sofa && !item.primitive && !item.expanded" class="btn btn-primary btn-xs"
+              ng-click="expandItem($index)"><span class="glyphicon glyphicon-chevron-right"></span></button>
+      <button ng-if="!item.sofa && !item.primitive && item.expanded" class="btn btn-primary btn-xs"
+              ng-click="collapseItem($index)"><span class="glyphicon glyphicon-chevron-down"></span></button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+<h5 ng-if="unitOfAnalysis.filters.length">Filters</h5>
+<table ng-if="unitOfAnalysis.filters.length" class="table table-striped">
+  <tbody>
+  <tr ng-repeat="filter in unitOfAnalysis.filters">
     <td>
-      <span class="text-right">
-        <button ng-if="item.primitive" class="btn btn-success btn-xs" ng-click="addFeature($index)"><span
-          class="glyphicon glyphicon-plus"></span>
-        </button>
-        <button ng-if="!item.sofa && !item.primitive && !item.expanded" class="btn btn-primary btn-xs"
-                ng-click="expandItem($index)"><span class="glyphicon glyphicon-chevron-right"></span></button>
-        <button ng-if="!item.sofa && !item.primitive && item.expanded" class="btn btn-primary btn-xs"
-                ng-click="collapseItem($index)"><span class="glyphicon glyphicon-chevron-down"></span></button>
-      </span>
+      <b>Feature:</b>
+      <feature-on feature-name="filter.feature.name"></feature-on>
+      <br>
+      <div ng-if="filter.nestedStructure.length > 0">
+        <b>On Nested Structure:</b>
+        <ul>
+          <li ng-repeat="nestedItem in filter.nestedStructure">
+            <feature-on feature-name="nestedItem"></feature-on>
+          </li>
+        </ul>
+      </div>
+      <select id="filterOptions"></select>
     </td>
   </tr>
   </tbody>
