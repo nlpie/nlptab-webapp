@@ -30,11 +30,13 @@ angular.module('nlptabApp')
       var config = {
         hypothesisUnitOfAnalysis: {
           selectedSystem: hypothesisUnitOfAnalysis.selectedSystem.index,
-          selectedType: hypothesisUnitOfAnalysis.selectedType.typeName
+          selectedType: hypothesisUnitOfAnalysis.selectedType.typeName,
+          filters: hypothesisUnitOfAnalysis.filters
         },
         referenceUnitOfAnalysis: {
           selectedSystem: referenceUnitOfAnalysis.selectedSystem.index,
-          selectedType: referenceUnitOfAnalysis.selectedType.typeName
+          selectedType: referenceUnitOfAnalysis.selectedType.typeName,
+          filters: referenceUnitOfAnalysis.filters
         },
         featureValueMappings: featureValueMappings,
         instance: nlptabConfig.instanceName,
@@ -43,6 +45,6 @@ angular.module('nlptabApp')
         hitMiss: hitMiss ? hitMiss ? 'true' : 'false' : 'false'
       };
 
-      return $http.post(nlptabConfig.esPath + '/_nlptab-analysis', config);
+      return $http.post(nlptabConfig.esServer + '/_nlptab-analysis', config);
     };
   });

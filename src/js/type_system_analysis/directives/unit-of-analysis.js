@@ -20,6 +20,8 @@ angular.module('nlptabApp')
 
         $scope.tree = [];
 
+        $scope.filterOptions = ['equals', 'in'];
+
         $scope.fetchTypes = function (filter) {
           if ($scope.unitOfAnalysis.selectedSystem && $scope.unitOfAnalysis.selectedSystem.index) {
             Type.allInSystem($scope.unitOfAnalysis.selectedSystem.index, 0, 30, filter)
@@ -182,20 +184,18 @@ angular.module('nlptabApp')
         };
 
         $scope.addFilter = function (index) {
-          var __ret = getNestedPath(index);
+          var item = $scope.tree[index];
           var filter = {
-            feature: __ret.item.feature,
-            path: __ret.nestedPath,
-            collection: __ret.collection,
+            feature: item.feature.shortName,
             value: '',
-            filter: 'equals',
-            filterOptions: {
-              'equals',
-              'in'
-            }
+            option: 'equals'
           };
 
           $scope.unitOfAnalysis.filters.push(filter);
+        };
+
+        $scope.deleteFilter = function (index) {
+          $scope.unitOfAnalysis.filters.splice(index, 1);
         };
       }
     };

@@ -55,7 +55,7 @@
       <button ng-if="item.primitive" class="btn btn-success btn-xs" ng-click="addFeature($index)">
         Select Feature
       </button>
-      <button ng-if="item.primitive" class="btn btn-success btn-xs" ng-click="addFilter($index)">
+      <button ng-if="item.primitive && item.level == 0 && !item.collection" class="btn btn-success btn-xs" ng-click="addFilter($index)">
         Add Filter
       </button>
       <button ng-if="!item.sofa && !item.primitive && !item.expanded" class="btn btn-primary btn-xs"
@@ -83,7 +83,17 @@
           </li>
         </ul>
       </div>
-      <select id="filterOptions"></select>
+      <label for="filterOptions">Test: </label>
+      <select id="filterOptions" class="form-control" ng-model="filter.option">
+        <option ng-repeat="option in filterOptions">{{option}}</option>
+      </select>
+      <label for="filterValue">Value: </label>
+      <input id="filterValue" type="text" ng-model="filter.value">
+    </td>
+    <td class="text-right">
+      <button class="btn btn-danger btn-xs" ng-click="deleteFilter($index)">
+        <span class="glyphicon glyphicon-minus"></span>
+      </button>
     </td>
   </tr>
   </tbody>
