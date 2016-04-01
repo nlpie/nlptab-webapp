@@ -1,0 +1,63 @@
+<navbar selected-link="'analysis'"></navbar>
+<ol class="breadcrumb">
+  <li class="active">Analyzed Systems</li>
+</ol>
+<div class="row">
+  <div class="col-md-4 col-md-offset-2">
+    <h3>Analyzed Systems</h3>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-4 col-md-offset-2">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Hypothesis Systems</h3>
+      </div>
+      <table class="table table-hover">
+        <tr ng-repeat="tested in systems" ng-class="{'true':'info', 'false':''}[selectedTested === tested.index]"
+            ng-click="selectTested(tested)">
+          <td>
+            <span ng-bind="tested.system"></span>
+            <small class="text-info" ng-bind="tested.description"></small>
+          </td>
+          <td class="text-right" ng-bind="tested.count"></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Reference Systems</h3>
+      </div>
+      <table class="table table-hover">
+        <tr ng-repeat="goldStandard in systems"
+            ng-class="{'true':'info', 'false':''}[selectedGoldStandard === goldStandard.index]"
+            ng-click="selectGoldStandard(goldStandard)">
+          <td>
+            <span ng-bind="goldStandard.system"></span>
+            <small class="text-info" ng-bind="goldStandard.description"></small>
+          </td>
+          <td class="text-right" ng-bind="goldStandard.goldCount"></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-10 col-md-offset-2">
+    <p>
+      <a class="btn btn-primary" ng-disabled="!isReady"
+         href="#/analysis-results?tested={{selectedTested}}&gold={{selectedGoldStandard}}" role="button">Go</a>
+      <span ng-if="selectedGoldStandard && !isReady">There are 0 completed analysis runs with the selected systems.</span>
+    </p>
+  </div>
+</div>
+
+<div class="row" ng-if="isSecure">
+  <div class="col-md-2 col-md-offset-2">
+    <p>
+      <a class="btn btn-primary" href="#/analysis-builder" role="button">Run new analysis</a>
+    </p>
+  </div>
+</div>
