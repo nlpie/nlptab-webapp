@@ -10,10 +10,10 @@ angular.module('nlptabApp')
                 systemIndex: '='
             },
             restrict: 'E',
-            controller: function ($scope, $modal) {
+            controller: function ($scope, $uibModal) {
                 $scope.open = function () {
                     if ($scope.fsId) {
-                        $modal.open({
+                      $uibModal.open({
                             templateUrl: './partials/common/fs-instance-modal.html',
                             controller: 'FsInstanceModalCtrl',
                             size: 'lg',

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('nlptabApp')
-  .controller('TypeSelectionModalCtrl', function ($scope, $modalInstance, Type, Pagination, systemIndex, selectedType) {
+  .controller('TypeSelectionModalCtrl', function ($scope, $uibModalInstance, Type, Pagination, systemIndex, selectedType) {
     $scope.pagination = Pagination.withPageAndItemsPerPage(1, 20);
 
     $scope.systemIndex = systemIndex;
@@ -26,6 +26,6 @@ angular.module('nlptabApp')
     });
 
     $scope.done = function () {
-      $modalInstance.dismiss('done');
+      $uibModalInstance.dismiss('done');
     };
   });

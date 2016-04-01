@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('nlptabApp')
-  .controller('SystemBuilderCtrl', function ($scope, SystemIndexingTasks, $location, $modal) {
+  .controller('SystemBuilderCtrl', function ($scope, SystemIndexingTasks, $location, $uibModal) {
     $scope.systemName = '';
     $scope.systemDescription = '';
     $scope.useXCas = false;
@@ -12,7 +12,7 @@ angular.module('nlptabApp')
     $scope.submit = function () {
       $scope.uploading = true;
 
-      var modal = $modal.open({
+      var modal = $uibModal.open({
         template: '<div><h3>Uploading File</h3><p><progressbar value="progress"></progressbar></p></div>'
       });
 

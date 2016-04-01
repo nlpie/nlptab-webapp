@@ -6,12 +6,12 @@ angular.module('nlptabApp')
      * Controller for a feature structure instance info modal.
      *
      * @param {$rootScope.Scope} $scope angular scope injected.
-     * @param {object} $modalInstance injected modal instance.
+     * @param {object} $uibModalInstance injected modal instance.
      * @param {FeatureStructure} FeatureStructure injected feature structure service.
      * @param {string} fsId resolved argument for the
      * @param {string} systemIndex resolved argument for the system index.
      */
-    function ($scope, $modalInstance, FeatureStructure, fsId, systemIndex) {
+    function ($scope, $uibModalInstance, FeatureStructure, fsId, systemIndex) {
       /**
        * Scope property for the system index.
        *
@@ -27,6 +27,6 @@ angular.module('nlptabApp')
        * Scope function for dismissing the modal.
        */
       $scope.done = function () {
-        $modalInstance.dismiss('done');
+        $uibModalInstance.dismiss('done');
       };
     });

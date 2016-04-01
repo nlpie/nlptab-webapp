@@ -33,7 +33,7 @@ angular.module('nlptabApp')
        * @return {string} the new system index created.
        */
       this.indexMetadata = function (systemName, systemDescription) {
-        return $http.post(nlptabConfig.esPath + '/_nlptab-systemindexmeta', {
+        return $http.post(nlptabConfig.esServer + '/_nlptab-systemindexmeta', {
           systemName: systemName,
           systemDescription: systemDescription,
           instance: nlptabConfig.instanceName
@@ -44,7 +44,7 @@ angular.module('nlptabApp')
 
       this.indexSystem = function (index, file, useXCas) {
         return Upload.http({
-          url: nlptabConfig.esPath + '/_nlptab-systemindex?instance=' + nlptabConfig.instanceName + '&index=' + index + '&useXCas=' + useXCas,
+          url: nlptabConfig.esServer + '/_nlptab-systemindex?instance=' + nlptabConfig.instanceName + '&index=' + index + '&useXCas=' + useXCas,
           headers: {
             'Content-Type': file.type
           },
