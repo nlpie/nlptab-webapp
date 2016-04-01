@@ -3,7 +3,7 @@
 angular.module('nlptabApp')
   .directive('cooccurringExamplesRow', function (nlptabConfig) {
     return {
-      templateUrl: '../../../partials/type_systems_analysis/cooccurring-examples-row.html',
+      templateUrl: './partials/type_systems_analysis/cooccurring-examples-row.html',
       restrict: 'A',
       require: '^cooccurringExamplesList',
       controller: function ($scope, FeatureStructure) {

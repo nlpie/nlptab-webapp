@@ -4,7 +4,7 @@ angular.module('nlptabApp')
   .directive('instancesDetail',
     function () {
       return {
-        templateUrl: '../../../partials/systems/instances-detail.html',
+        templateUrl: './partials/systems/instances-detail.html',
         restrict: 'E',
         controller: function InstancesDetailCtrl($scope, FeatureStructure, Pagination) {
           $scope.instancesPagination = Pagination.withPageAndItemsPerPage(1, 1);

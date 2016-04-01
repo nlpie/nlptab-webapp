@@ -14,7 +14,7 @@ angular.module('nlptabApp')
                 $scope.open = function () {
                     if ($scope.fsId) {
                         $modal.open({
-                            templateUrl: '/partials/common/fs-instance-modal.html',
+                            templateUrl: './partials/common/fs-instance-modal.html',
                             controller: 'FsInstanceModalCtrl',
                             size: 'lg',
                             resolve: {

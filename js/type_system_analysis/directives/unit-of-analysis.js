@@ -8,7 +8,7 @@ var collections = ['uima.cas.BooleanArray', 'uima.cas.ByteArray', 'uima.cas.Shor
 angular.module('nlptabApp')
   .directive('unitOfAnalysis', function () {
     return {
-      templateUrl: '../../../partials/type_systems_analysis/unit-of-analysis.html',
+      templateUrl: './partials/type_systems_analysis/unit-of-analysis.html',
       restrict: 'E',
       scope: {
         unitOfAnalysis: '=',
@@ -33,7 +33,7 @@ angular.module('nlptabApp')
 
         $scope.openTypeSelection = function () {
           $uibModal.open({
-            templateUrl: '../../../partials/type_systems_analysis/type-selection-modal.html',
+            templateUrl: '../../.../partials/type_systems_analysis/type-selection-modal.html',
             controller: 'TypeSelectionModalCtrl',
             size: 'lg',
             resolve: {
@@ -166,7 +166,7 @@ angular.module('nlptabApp')
 
         $scope.examples = function (index) {
           $uibModal.open({
-            templateUrl: '../../../partials/type_systems_analysis/feature-examples-modal.html',
+            templateUrl: '../../.../partials/type_systems_analysis/feature-examples-modal.html',
             controller: 'FeatureExamplesModalCtrl',
             size: 'lg',
             resolve: {

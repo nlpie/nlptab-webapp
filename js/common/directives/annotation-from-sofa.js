@@ -41,6 +41,6 @@ angular.module('nlptabApp')
       scope: {
         featureStructure: '='
       },
-      templateUrl: '/partials/common/annotation-from-sofa.html'
+      templateUrl: './partials/common/annotation-from-sofa.html'
     };
   });

@@ -4,7 +4,7 @@ angular.module('nlptabApp')
     .directive('typeInfo', function () {
         return {
             restrict: 'E',
-            templateUrl: '../../../partials/systems/type-info.html',
+            templateUrl: './partials/systems/type-info.html',
             controller: function ($scope, FeatureStructure, Type) {
                 FeatureStructure.countTotal($scope.systemIndex).then(function (result) {
                     $scope.totalFeatureStructures = result;

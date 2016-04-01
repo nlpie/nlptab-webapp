@@ -3,7 +3,7 @@
 angular.module('nlptabApp')
   .directive('intPrimitiveFeature', function () {
     return {
-      templateUrl: '../../../partials/systems/int-primitive-feature.html',
+      templateUrl: './partials/systems/int-primitive-feature.html',
       restrict: 'E',
       scope: {
         feature: '=',

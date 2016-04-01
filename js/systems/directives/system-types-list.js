@@ -3,7 +3,7 @@
 angular.module('nlptabApp')
     .directive('systemTypesList', function () {
         return {
-            templateUrl: '../../../partials/systems/system-types-list.html',
+            templateUrl: './partials/systems/system-types-list.html',
             restrict: 'E',
             controller: function ($scope, $location, Type) {
                 $scope.pagination = {page: 1, itemsPerPage: 15};

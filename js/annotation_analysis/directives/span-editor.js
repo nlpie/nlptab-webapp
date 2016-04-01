@@ -3,7 +3,7 @@
 angular.module('nlptabApp')
     .directive('spanEditor', function () {
         return {
-            templateUrl: '../../../partials/annotation_analysis/span-editor.html',
+            templateUrl: './partials/annotation_analysis/span-editor.html',
             restrict: 'E',
             transclude: true,
             scope: {

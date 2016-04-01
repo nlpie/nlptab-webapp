@@ -3,7 +3,7 @@ angular.module('nlptabApp')
     .directive('navbar', function () {
         return {
             restrict: 'E',
-            templateUrl: '/partials/common/navbar.html',
+            templateUrl: './partials/common/navbar.html',
             scope: {
                 selectedLink: '='
             },

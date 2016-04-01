@@ -1,30 +1,28 @@
 'use strict';
 
-require('../dist/templateCachePartials');
-
-var deps = ['ngRoute', 'elasticsearch', 'ui.bootstrap', 'ui.select', 'ngSanitize', 'ngFileUpload', 'nlptabPartials'];
+var deps = ['ngRoute', 'elasticsearch', 'ui.bootstrap', 'ui.select', 'ngSanitize', 'ngFileUpload'];
 
 angular.module('nlptabApp', deps)
   .config(function ($routeProvider, nlptabConfig) {
     $routeProvider.when('/main', {
       templateUrl: function () {
         if (nlptabConfig.isBio) {
-          return '/partials/common/bio-main.html';
+          return './partials/common/bio-main.html';
         } else {
-          return '/partials/common/main.html';
+          return './partials/common/main.html';
         }
       },
       reloadOnSearch: false
     }).when('/analysis', {
-      templateUrl: '/partials/type_systems_analysis/analysis.html',
+      templateUrl: './partials/type_systems_analysis/analysis.html',
       controller: 'AnalysisCtrl',
       reloadOnSearch: false
     }).when('/analysis-results', {
-      templateUrl: '/partials/type_systems_analysis/analysis-results.html',
+      templateUrl: './partials/type_systems_analysis/analysis-results.html',
       controller: 'AnalysisResultsCtrl',
       reloadOnSearch: false
     }).when('/analysis-results-explore/:matchCountsId', {
-      templateUrl: '/partials/type_systems_analysis/analysis-results-explore.html',
+      templateUrl: './partials/type_systems_analysis/analysis-results-explore.html',
       controller: 'AnalysisResultsExploreCtrl',
       reloadOnSearch: false,
       resolve: {
@@ -33,19 +31,19 @@ angular.module('nlptabApp', deps)
         }
       }
     }).when('/analysis-progress/:analysisId', {
-      templateUrl: '/partials/type_systems_analysis/analysis-progress.html',
+      templateUrl: './partials/type_systems_analysis/analysis-progress.html',
       controller: 'AnalysisProgressCtrl',
       reloadOnSearch: false
     }).when('/analysis-builder', {
-      templateUrl: '/partials/type_systems_analysis/analysis-builder.html',
+      templateUrl: './partials/type_systems_analysis/analysis-builder.html',
       controller: 'AnalysisBuilderCtrl',
       reloadOnSearch: false
     }).when('/document-search', {
-      templateUrl: '/partials/annotation_analysis/document-search.html',
+      templateUrl: './partials/annotation_analysis/document-search.html',
       controller: 'DocumentSearchCtrl',
       reloadOnSearch: false
     }).when('/document-search/explore/:sofaIdentifier', {
-      templateUrl: '/partials/annotation_analysis/document-search-explore.html',
+      templateUrl: './partials/annotation_analysis/document-search-explore.html',
       controller: 'DocumentSearchExploreCtrl',
       reloadOnSearch: false,
       resolve: {
@@ -57,11 +55,11 @@ angular.module('nlptabApp', deps)
         }
       }
     }).when('/type-systems', {
-      templateUrl: '/partials/systems/systems-list.html',
+      templateUrl: './partials/systems/systems-list.html',
       controller: 'SystemsListCtrl',
       reloadOnSearch: false
     }).when('/system/:systemIndex', {
-      templateUrl: '/partials/systems/system.html',
+      templateUrl: './partials/systems/system.html',
       controller: 'SystemCtrl',
       reloadOnSearch: false,
       resolve: {
@@ -70,11 +68,11 @@ angular.module('nlptabApp', deps)
         }
       }
     }).when('/system-builder', {
-      templateUrl: '/partials/systems/system-builder.html',
+      templateUrl: './partials/systems/system-builder.html',
       controller: 'SystemBuilderCtrl',
       reloadOnSearch: false
     }).when('/system-task-progress/:index', {
-      templateUrl: '/partials/systems/system-task-progress.html',
+      templateUrl: './partials/systems/system-task-progress.html',
       controller: 'SystemTaskProgressCtrl',
       reloadOnSearch: false
     }).otherwise({

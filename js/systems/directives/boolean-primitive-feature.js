@@ -3,7 +3,7 @@
 angular.module('nlptabApp')
   .directive('booleanPrimitiveFeature', function () {
     return {
-      templateUrl: '../../../partials/systems/boolean-primitive-feature.html',
+      templateUrl: './partials/systems/boolean-primitive-feature.html',
       restrict: 'E',
       scope: {
         feature: '=',

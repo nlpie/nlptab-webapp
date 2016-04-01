@@ -3,7 +3,7 @@
 angular.module('nlptabApp')
   .directive('featureValues', function (FeatureStructure) {
     return {
-      templateUrl: '/partials/common/feature-values.html',
+      templateUrl: './partials/common/feature-values.html',
       restrict: 'E',
       scope: {
         systemIndex: '=',

@@ -3,7 +3,7 @@
 angular.module('nlptabApp')
   .directive('stringPrimitiveFeature', function () {
     return {
-      templateUrl: '../../../partials/systems/string-primitive-feature.html',
+      templateUrl: './partials/systems/string-primitive-feature.html',
       restrict: 'E',
       scope: {
         feature: '=',

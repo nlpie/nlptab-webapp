@@ -3,7 +3,7 @@
 angular.module('nlptabApp')
   .directive('fsTypesInSpanTable', function () {
     return {
-      templateUrl: '../../../partials/annotation_analysis/fs-types-in-span-table.html',
+      templateUrl: './partials/annotation_analysis/fs-types-in-span-table.html',
       restrict: 'E',
       controller: function ($scope, $routeParams, $location, FeatureStructure, CasProcessingIndex) {
         $scope.pagination = {

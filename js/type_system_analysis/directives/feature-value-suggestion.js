@@ -3,7 +3,7 @@
 angular.module('nlptabApp')
   .directive('featureValueSuggestion', function (FeatureStructure) {
     return {
-      templateUrl: '../../../partials/type_systems_analysis/feature-value-suggestion.html',
+      templateUrl: './partials/type_systems_analysis/feature-value-suggestion.html',
       restrict: 'E',
       scope: {
         value: '=',

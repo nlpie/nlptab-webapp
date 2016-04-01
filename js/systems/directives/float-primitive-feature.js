@@ -3,7 +3,7 @@
 angular.module('nlptabApp')
   .directive('floatPrimitiveFeature', function () {
     return {
-      templateUrl: '../../../partials/systems/float-primitive-feature.html',
+      templateUrl: './partials/systems/float-primitive-feature.html',
       restrict: 'E',
       scope: {
         feature: '=',

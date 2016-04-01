@@ -10,7 +10,7 @@ angular.module('nlptabApp')
         featureValueMappings: '=',
         isHypothesis: '='
       },
-      templateUrl: '../../../partials/type_systems_analysis/unit-of-analysis-description.html',
+      templateUrl: './partials/type_systems_analysis/unit-of-analysis-description.html',
       link: function(scope) {
         scope.mappings = scope.featureValueMappings.map(function (element) {
           if (scope.isHypothesis) {

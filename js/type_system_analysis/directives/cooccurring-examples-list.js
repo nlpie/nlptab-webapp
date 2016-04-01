@@ -3,7 +3,7 @@
 angular.module('nlptabApp')
   .directive('cooccurringExamplesList', function () {
     return {
-      templateUrl: '../../../partials/type_systems_analysis/cooccurring-examples-list.html',
+      templateUrl: './partials/type_systems_analysis/cooccurring-examples-list.html',
       restrict: 'E',
       controller: function ($scope, CoOccurrenceMatches, Pagination) {
         $scope.pagination = Pagination.withPageAndItemsPerPage(1, 1);

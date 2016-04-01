@@ -3,7 +3,7 @@
 angular.module('nlptabApp')
   .directive('examplesInSpan', function () {
     return {
-      templateUrl: '../../../partials/annotation_analysis/examples-in-span.html',
+      templateUrl: './partials/annotation_analysis/examples-in-span.html',
       restrict: 'E',
       controller: function ($scope, FeatureStructure) {
         $scope.pagination = {

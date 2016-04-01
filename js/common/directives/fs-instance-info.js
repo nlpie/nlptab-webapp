@@ -9,7 +9,7 @@ angular.module('nlptabApp')
      */
     function () {
       return {
-        templateUrl: '/partials/common/fs-instance-info.html',
+        templateUrl: './partials/common/fs-instance-info.html',
         restrict: 'E',
         scope: {
           featureStructure: '='

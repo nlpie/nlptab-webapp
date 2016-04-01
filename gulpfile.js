@@ -23,7 +23,7 @@ gulp.task('clean', function () {
     .pipe(vinylPaths(del));
 });
 
-gulp.task('build-css', ['clean'], function() {
+gulp.task('build-css', ['clean'], function () {
   return gulp.src('./styles/*')
     .pipe(gulpPlugins.sourcemaps.init())
     .pipe(gulpPlugins.sass())
@@ -32,20 +32,13 @@ gulp.task('build-css', ['clean'], function() {
     .pipe(gulp.dest('./dist'));
 });
 
-gulp.task('build-template-cache', ['clean'], function() {
-  var ngHtml2Js = require("gulp-ng-html2js"),
-    concat = require("gulp-concat");
-
+gulp.task('build-template-cache', ['clean'], function () {
   return gulp.src("./partials/**/*.html")
-    .pipe(ngHtml2Js({
-      moduleName: "nlptabPartials",
-      prefix: "/partials/"
-    }))
-    .pipe(concat("templateCachePartials.js"))
-    .pipe(gulp.dest('./dist'));
+    .pipe(gulpPlugins.htmlmin({collapseWhitespace: true}))
+    .pipe(gulp.dest('./dist/partials'));
 });
 
-gulp.task('jshint', function() {
+gulp.task('jshint', function () {
   gulp.src('./js/*.js')
     .pipe(gulpPlugins.jshint())
     .pipe(gulpPlugins.jshint.reporter('default'));
@@ -75,17 +68,17 @@ gulp.task('copy-config', ['clean'], function () {
 });
 
 
-gulp.task('build', [ 'clean', 'build-css','build-template-cache', 'jshint', 'build-js', 'copy-config'], function() {
+gulp.task('build', ['clean', 'build-css', 'build-template-cache', 'jshint', 'build-js', 'copy-config'], function () {
   return gulp.src('./index.html')
     .pipe(cachebust.references())
     .pipe(gulp.dest('dist'));
 });
 
-gulp.task('watch', function() {
-  return gulp.watch(['./index.html','./partials/*.html', './styles/*.*css', './js/**/*.js'], ['build']);
+gulp.task('watch', function () {
+  return gulp.watch(['./index.html', './partials/*.html', './styles/*.*css', './js/**/*.js'], ['build']);
 });
 
-gulp.task('webserver', ['watch','build'], function() {
+gulp.task('webserver', ['watch', 'build'], function () {
   gulp.src('.')
     .pipe(gulpPlugins.webserver({
       livereload: false,

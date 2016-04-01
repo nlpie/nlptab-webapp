@@ -1,5 +1,4 @@
 /node_modules
 /.tmp
-/app/third_party
-/app/js
+/dist
 /.idea
