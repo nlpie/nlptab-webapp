@@ -33,7 +33,7 @@ angular.module('nlptabApp')
 
         $scope.openTypeSelection = function () {
           $uibModal.open({
-            templateUrl: '../../.../partials/type_systems_analysis/type-selection-modal.html',
+            templateUrl: './partials/type_systems_analysis/type-selection-modal.html',
             controller: 'TypeSelectionModalCtrl',
             size: 'lg',
             resolve: {
@@ -166,7 +166,7 @@ angular.module('nlptabApp')
 
         $scope.examples = function (index) {
           $uibModal.open({
-            templateUrl: '../../.../partials/type_systems_analysis/feature-examples-modal.html',
+            templateUrl: './partials/type_systems_analysis/feature-examples-modal.html',
             controller: 'FeatureExamplesModalCtrl',
             size: 'lg',
             resolve: {
