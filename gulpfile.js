@@ -23,6 +23,14 @@ gulp.task('clean', function () {
     .pipe(vinylPaths(del));
 });
 
+gulp.task('bower', function() {
+
+  var install = require("gulp-install");
+
+  return gulp.src(['./bower.json'])
+    .pipe(install());
+});
+
 gulp.task('build-css', ['clean'], function () {
   return gulp.src('./styles/*')
     .pipe(gulpPlugins.sourcemaps.init())
@@ -61,14 +69,22 @@ gulp.task('build-js', ['clean', 'build-template-cache'], function () {
 });
 
 gulp.task('copy-config', ['clean'], function () {
-  gulp.src('./config.js')
+  return gulp.src('./config.js')
     .pipe(buffer())
     .pipe(cachebust.resources())
     .pipe(gulp.dest('./dist'));
 });
 
+gulp.task('copy-bower', ['clean'], function () {
+  return gulp.src('./bower_components/**').pipe(gulp.dest('./dist/bower_components'));
+});
 
-gulp.task('build', ['clean', 'build-css', 'build-template-cache', 'jshint', 'build-js', 'copy-config'], function () {
+gulp.task('copy-bootstrap-ui', ['clean'], function () {
+  return gulp.src('./ui-bootstrap-tpls-1.2.5.min.js').pipe(gulp.dest('./dist'));
+});
+
+
+gulp.task('build', ['clean', 'bower', 'build-css', 'build-template-cache', 'jshint', 'build-js', 'copy-bower', 'copy-bootstrap-ui', 'copy-config'], function () {
   return gulp.src('./index.html')
     .pipe(cachebust.references())
     .pipe(gulp.dest('dist'));

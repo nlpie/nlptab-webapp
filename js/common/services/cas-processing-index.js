@@ -86,6 +86,6 @@ angular.module('nlptabApp')
     };
 
     this.deleteSystem = function (system) {
-      return $http.post(nlptabConfig.esPath + '/_nlptab-deletesystem?instance=' + nlptabConfig.instanceName + '&id=' + system);
+      return $http.post(nlptabConfig.esServer + '/_nlptab-deletesystem?instance=' + nlptabConfig.instanceName + '&id=' + system);
     };
   });

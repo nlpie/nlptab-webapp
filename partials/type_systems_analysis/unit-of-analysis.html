@@ -72,22 +72,14 @@
   <tbody>
   <tr ng-repeat="filter in unitOfAnalysis.filters">
     <td>
-      <b>Feature:</b>
+      <b>Feature:&nbsp;</b>
       <feature-on feature-name="filter.feature.name"></feature-on>
-      <br>
-      <div ng-if="filter.nestedStructure.length > 0">
-        <b>On Nested Structure:</b>
-        <ul>
-          <li ng-repeat="nestedItem in filter.nestedStructure">
-            <feature-on feature-name="nestedItem"></feature-on>
-          </li>
-        </ul>
-      </div>
-      <label for="filterOptions">Test: </label>
+      <br/>
+      <label for="filterOptions">Test:&nbsp;</label>
       <select id="filterOptions" class="form-control" ng-model="filter.option">
         <option ng-repeat="option in filterOptions">{{option}}</option>
       </select>
-      <label for="filterValue">Value: </label>
+      <label for="filterValue">Value:&nbsp;</label>
       <input id="filterValue" type="text" ng-model="filter.value">
     </td>
     <td class="text-right">

@@ -186,7 +186,7 @@ angular.module('nlptabApp')
         $scope.addFilter = function (index) {
           var item = $scope.tree[index];
           var filter = {
-            feature: item.feature.shortName,
+            feature: item.feature,
             value: '',
             option: 'equals'
           };
