@@ -1,0 +1,92 @@
+<h5>System</h5>
+<p>
+  <ui-select ng-model="unitOfAnalysis.selectedSystem" theme="bootstrap">
+    <ui-select-match placeholder="System Name">
+      <span>{{$select.selected.system}}</span>
+      <small>{{$select.selected.description}}</small>
+    </ui-select-match>
+    <ui-select-choices repeat="system in systems | filter: $select.search">
+      <span ng-bind-html="system.system | highlight: $select.search"></span>
+      <small ng-bind-html="system.description | highlight: $select.search"></small>
+    </ui-select-choices>
+  </ui-select>
+</p>
+
+<h5>Type</h5>
+<div class="row">
+  <div class="col-md-10">
+    <ui-select ng-model="unitOfAnalysis.selectedType" ng-disabled="!unitOfAnalysis.selectedSystem">
+      <ui-select-match placeholder="Type Name">
+        <span>{{$select.selected.typeShortName}}</span>
+      </ui-select-match>
+      <ui-select-choices max-size="30"
+                         repeat="uimaType in types"
+                         refresh="fetchTypes($select.search)"
+                         refresh-delay="0">
+        <span ng-bind-html="uimaType.typeShortName | highlight: $select.search"></span>
+      </ui-select-choices>
+    </ui-select>
+  </div>
+  <div class="col-md-2 text-right">
+    <button class="btn btn-default btn-sm" ng-click="openTypeSelection()"><span class="glyphicon glyphicon-list"></span>
+    </button>
+  </div>
+</div>
+
+<h5 ng-if="unitOfAnalysis.selectedType">Tree</h5>
+<table ng-if="unitOfAnalysis.selectedType" class="table table-striped">
+  <tbody>
+  <tr ng-repeat="item in tree">
+    <td>
+      <div class="row">
+
+        <div ng-class="item.class">
+          {{item.feature.shortName}} <span ng-if="item.subclass">on <type-name name="item.onType"
+                                                                               system-index="unitOfAnalysis.selectedSystem.systemIndex"></type-name> </span>
+          <a ng-if="item.primitive"
+             ng-click="examples($index)">Examples</a><br>
+          <small>
+            <type-name name="item.feature.valueType" unlinked>
+          </small>
+        </div>
+      </div>
+    </td>
+    <td class="text-right">
+      <button ng-if="item.primitive" class="btn btn-success btn-xs" ng-click="addFeature($index)">
+        Select Feature
+      </button>
+      <button ng-if="item.primitive && item.level == 0 && !item.collection" class="btn btn-success btn-xs" ng-click="addFilter($index)">
+        Add Filter
+      </button>
+      <button ng-if="!item.sofa && !item.primitive && !item.expanded" class="btn btn-primary btn-xs"
+              ng-click="expandItem($index)"><span class="glyphicon glyphicon-chevron-right"></span></button>
+      <button ng-if="!item.sofa && !item.primitive && item.expanded" class="btn btn-primary btn-xs"
+              ng-click="collapseItem($index)"><span class="glyphicon glyphicon-chevron-down"></span></button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+<h5 ng-if="unitOfAnalysis.filters.length">Filters</h5>
+<table ng-if="unitOfAnalysis.filters.length" class="table table-striped">
+  <tbody>
+  <tr ng-repeat="filter in unitOfAnalysis.filters">
+    <td>
+      <b>Feature:&nbsp;</b>
+      <feature-on feature-name="filter.feature.name"></feature-on>
+      <br/>
+      <label for="filterOptions">Test:&nbsp;</label>
+      <select id="filterOptions" class="form-control" ng-model="filter.option">
+        <option ng-repeat="option in filterOptions">{{option}}</option>
+      </select>
+      <label for="filterValue">Value:&nbsp;</label>
+      <input id="filterValue" type="text" ng-model="filter.value">
+    </td>
+    <td class="text-right">
+      <button class="btn btn-danger btn-xs" ng-click="deleteFilter($index)">
+        <span class="glyphicon glyphicon-minus"></span>
+      </button>
+    </td>
+  </tr>
+  </tbody>
+</table>
