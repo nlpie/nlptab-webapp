@@ -95,6 +95,10 @@ angular.module('nlptabApp')
       $location.search('info', true).replace();
     };
 
+    $scope.updateSelectedType = function (subdoc) {
+	Type.updateType($scope.systemIndex, $scope.selectedType._id, subdoc);
+    };
+
     $scope.$watch('selectedTypeName', function (newValue) {
       if (newValue) {
         Type.withName($scope.systemIndex, $scope.selectedTypeName).then(function (result) {

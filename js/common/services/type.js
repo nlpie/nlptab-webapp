@@ -86,7 +86,7 @@ angular.module('nlptabApp')
           }
         }).then(function (body) {
           if (body && body.hits && body.hits.hits && body.hits.hits.length > 0) {
-            return body.hits.hits[0]._source;
+              return angular.extend(body.hits.hits[0]._source, { _id: body.hits.hits[0]._id });
           } else {
             return $q.reject('not found');
           }
@@ -154,4 +154,17 @@ angular.module('nlptabApp')
         var path = NAMES_MAP[feature.valueType];
         return path + '.' + feature.name.replace(/\./g, '_').replace(':', ';');
       };
+
+	this.updateType = function (systemIndex, id, subdoc) {
+            return Es.update({
+	        index: systemIndex,
+		type: 'Type',
+		id: id,
+		body: {
+		    doc: subdoc,
+		    doc_as_upsert: true
+		}
+            });
+      };
+
     });

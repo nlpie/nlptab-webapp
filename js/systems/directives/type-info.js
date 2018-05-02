@@ -10,6 +10,13 @@ angular.module('nlptabApp')
                     $scope.totalFeatureStructures = result;
                 });
 
+		$scope.selectedType.export = $scope.selectedType.export || false;
+
+		$scope.saveFeature = function() {
+		    console.log($scope.selectedType);
+		    $scope.updateSelectedType({ export: $scope.selectedType.export });
+		};
+
                 $scope.$watch('selectedType.typeName', function (typeName) {
                     if (typeName) {
                         FeatureStructure.countOfType($scope.systemIndex, typeName).then(function (result) {

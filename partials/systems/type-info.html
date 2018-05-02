@@ -17,8 +17,12 @@
         <h5>Child Types:</h5>
         <ul class="list-unstyled">
             <li ng-repeat="child in children">
-                <type-name name="child" system-index="systemIndex"></type-name>
+              <type-name name="child" system-index="systemIndex"></type-name>
             </li>
         </ul>
+        <h5>Export:</h5>
+	<form>
+	  <input type="checkbox" name="{{selectedType.typeShortname}}" value="{{selectedType.typeShortname}}" ng-model="selectedType.export" ng-change="saveFeature()"> Select this feature for export?
+	</form>
     </div>
 </div>
