@@ -23,13 +23,17 @@
         </td>
         <td ng-if="isSecure">
           <div class="accessory-container">
-            <button class="btn btn-danger" ng-click="deleteSystem($event, system.index)"><span
-              class="glyphicon glyphicon-minus"></span></button>
+            <button class="btn btn-danger" ng-click="deleteSystem($event, system.index)"><span class="glyphicon glyphicon-minus"></span></button>
           </div>
         </td>
       </tr>
       </tbody>
     </table>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
     <a ng-if="isSecure" href="#/system-builder" class="btn btn-lg btn-primary">Add System</a>
+    <a ng-if="isSecure" href="#/export-types" class="btn btn-lg btn-default">Export Selected Types</a>
   </div>
 </div>

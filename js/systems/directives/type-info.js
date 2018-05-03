@@ -13,7 +13,6 @@ angular.module('nlptabApp')
 		$scope.selectedType.export = $scope.selectedType.export || false;
 
 		$scope.saveFeature = function() {
-		    console.log($scope.selectedType);
 		    $scope.updateSelectedType({ export: $scope.selectedType.export });
 		};
 

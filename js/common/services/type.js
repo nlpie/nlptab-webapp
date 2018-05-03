@@ -155,16 +155,39 @@ angular.module('nlptabApp')
         return path + '.' + feature.name.replace(/\./g, '_').replace(':', ';');
       };
 
-	this.updateType = function (systemIndex, id, subdoc) {
-            return Es.update({
-	        index: systemIndex,
+      this.updateType = function (systemIndex, id, subdoc) {
+          return Es.update({
+	      index: systemIndex,
+	      type: 'Type',
+	      id: id,
+	      body: {
+		  doc: subdoc,
+		  doc_as_upsert: true
+	      }
+          });
+      };
+
+	this.querySystemTypes = function (systemIndex, filter) {
+	    return Es.search({
+		index: systemIndex,
 		type: 'Type',
-		id: id,
 		body: {
-		    doc: subdoc,
-		    doc_as_upsert: true
+		    query: {
+			match: filter
+		    }
+		}
+            }).then(function (result) {
+		if (result && result.hits && result.hits.hits) {
+		    var sources = result.hits.hits.map(function (val) {
+			return angular.extend(val._source, {
+			    _id: val._id
+			});
+		    });
+		    return {total: result.hits.total, types: sources};
+		} else {
+		    return {total: 0, types: []};
 		}
             });
-      };
+	};
 
     });

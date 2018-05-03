@@ -67,6 +67,10 @@ angular.module('nlptabApp', deps)
           return CasProcessingIndex.withIndexName($route.current.params.systemIndex);
         }
       }
+    }).when('/export-types', {
+      templateUrl: './partials/systems/export-types.html',
+      controller: 'ExportTypesCtrl',
+      reloadOnSearch: false
     }).when('/system-builder', {
       templateUrl: './partials/systems/system-builder.html',
       controller: 'SystemBuilderCtrl',

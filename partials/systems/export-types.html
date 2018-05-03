@@ -1,0 +1,34 @@
+<navbar selected-link="'systems'"></navbar>
+<div class="page-header">
+  <h1>Export Types</h1>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-hover">
+      <tbody>
+	<tr ng-repeat="system in systems" class="system-row ng-click-link" ng-click="selectSystem(system.index)">
+          <td>
+            <h4>{{system.system}}</h4>
+	    <ul class="list-unstyled">
+	      <li ng-repeat="type in system.types">
+		<type-name name="type.typeName" system-index="system.index"></type-name>&nbsp;
+		<small>{{ type.typeName }}</small>
+	      </li>
+	    </ul>
+          </td>
+	</tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-4">
+    <form ng-disabled="!uploading">
+      <div class="form-group">
+        <label for="useXCas">Download as Amicus Configuration?</label>
+        <input type="checkbox" class="form-control" id="useXCas" ng-model="useXCas">
+      </div>
+      <div class="btn btn-default" ng-click="download()">Download</div>
+    </form>
+  </div>
+</div>
