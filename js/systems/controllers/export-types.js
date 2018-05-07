@@ -6,9 +6,7 @@ angular.module('nlptabApp').controller('ExportTypesCtrl', function ($scope,  Cas
 
     $scope.pagination = {from: 0, size: 10};
 
-    $scope.download = function () {
-	console.log("DOWNLOAD");
-    };
+    $scope.asAmicus = false;
 
     $scope.fetchSystems = function () {
 	CasProcessingIndex.all($scope.pagination).
@@ -27,6 +25,29 @@ angular.module('nlptabApp').controller('ExportTypesCtrl', function ($scope,  Cas
 		angular.extend(val, { types : result.types });
 	    });
 	});
+    };
+
+    $scope.exportFile = function () {
+	var ret = '';
+	$scope.systems.map(function(sys){
+	    sys.types.map(function(typ){
+	     	ret += typ.typeName + "\n";
+	    });
+	});
+
+	if (!$scope.asAmicus){
+	    var objURL = URL.createObjectURL(new Blob([ret], {type: 'text/plain'}));
+	    var a = document.createElement("a");
+	    document.body.appendChild(a);
+	    a.style = "display: none";
+	    a.href = objURL;
+	    a.download = "export.txt";
+	    a.click();
+	    window.URL.revokeObjectURL(objURL);
+	    a.parentNode.removeChild(a);
+	} else {
+	    console.log("Not Implemented");
+	}
     };
 
 });

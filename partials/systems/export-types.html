@@ -25,10 +25,10 @@
   <div class="col-md-4">
     <form ng-disabled="!uploading">
       <div class="form-group">
-        <label for="useXCas">Download as Amicus Configuration?</label>
-        <input type="checkbox" class="form-control" id="useXCas" ng-model="useXCas">
+        <label for="asAmicus">Export as Amicus Configuration?</label>
+        <input type="checkbox" class="form-control" id="asAmicus" ng-model="asAmicus">
       </div>
-      <div class="btn btn-default" ng-click="download()">Download</div>
+      <div class="btn btn-default" ng-click="exportFile()">Export</div>
     </form>
   </div>
 </div>
