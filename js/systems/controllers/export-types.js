@@ -121,7 +121,7 @@ ${$scope.amicusTypes()}
 	    document.body.appendChild(a);
 	    a.style = "display: none";
 	    a.href = objURL;
-	    a.download = "export.txt";
+	    a.download = "export.yml";
 	    a.click();
 	    window.URL.revokeObjectURL(objURL);
 	    a.parentNode.removeChild(a);
