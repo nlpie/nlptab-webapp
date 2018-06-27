@@ -62,8 +62,7 @@ gulp.task('build-js', ['clean', 'build-template-cache'], function () {
     .pipe(source('bundle.js'))
     .pipe(buffer())
     .pipe(cachebust.resources())
-    .pipe(gulpPlugins.sourcemaps.init({loadMaps: true}))
-    .pipe(gulpPlugins.uglify())
+    .pipe(gulpPlugins.sourcemaps.init({loadMaps: true}))//.pipe(gulpPlugins.uglify())
     .pipe(gulpPlugins.sourcemaps.write('./'))
     .pipe(gulp.dest('./dist/js/'));
 });
