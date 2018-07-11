@@ -70,6 +70,8 @@ angular.module('nlptabApp').controller('ExportTypesCtrl', function ($scope,  Cas
 
   outputs:
   - {
+    annotationType: ${ typ.typeName },
+    pusher: edu.umn.amicus.pushers.PassthroughPusher,
     writeView: FilteredView
   }`;
 
