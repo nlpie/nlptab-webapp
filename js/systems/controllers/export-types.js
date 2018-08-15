@@ -31,7 +31,7 @@ angular.module('nlptabApp').controller('ExportTypesCtrl', function ($scope,  Cas
 	var ret = '';
 	var fromViews = {
 	    'clamp' : '_InitialView',
-	    'biomedicus' : 'SystemView',
+	    'biomedicus' : 'Analysis',
 	    'metamap' : '_InitialView',
 	    'ctakes' : '_InitialView'
 	};
